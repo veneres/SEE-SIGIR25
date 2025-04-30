@@ -245,13 +245,15 @@ def main():
 
     qrels = list(dataset.qrels_iter())
 
-    # TODO hardcoded for this poc, to do something better in future work
-    truncate_query = model_name in ["veneres/monoelectra",
-                                    "cross-encoder/ms-marco-MiniLM-L-12-v2",
-                                    "naver/trecdl22-crossencoder-electra"]
-    truncate_query = truncate_query and dataset_name == "beir/arguana"
-    if truncate_query:
-        print("Truncating the queries to 32 tokens")
+    truncate_query=False
+
+    # preliminary analysis on arguana low effectiveness
+    # truncate_query = model_name in ["veneres/monoelectra",
+    #                                 "cross-encoder/ms-marco-MiniLM-L-12-v2",
+    #                                 "naver/trecdl22-crossencoder-electra"]
+    # truncate_query = truncate_query and dataset_name == "beir/arguana"
+    # if truncate_query:
+    #     print("Truncating the queries to 32 tokens")
 
     res = []
     with torch.no_grad():
